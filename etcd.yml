@@ -77,8 +77,6 @@ spec:
     - containerPort: 7001
       protocol: TCP
   restartPolicy: Never
-  nodeSelector:
-    name: node-1  
 
 ---
 
@@ -150,8 +148,6 @@ spec:
     - containerPort: 7001
       protocol: TCP      
   restartPolicy: Never
-  nodeSelector:
-    name: node-2  
 ---
 
 apiVersion: v1
@@ -222,8 +218,6 @@ spec:
     - containerPort: 7001
       protocol: TCP      
   restartPolicy: Never
-  nodeSelector:
-    name: node-3  
 ---
 
 apiVersion: v1

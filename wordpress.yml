@@ -1,4 +1,17 @@
+kind: PersistentVolumeClaim
 apiVersion: v1
+metadata:
+  name: wordpress-1
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+apiVersion: v1
+
+---
+
 kind: Service
 metadata:
   labels:
@@ -51,7 +64,7 @@ spec:
           name: wordpress
         volumeMounts:
         - mountPath: /var/www/html
-          name: my-vol                    
+          name: wordpress-1
         env:
           - name: WORDPRESS_DB_PASSWORD
             value: k8spassword
@@ -60,6 +73,6 @@ spec:
           - name: WORDPRESS_DB_HOST
             value: mysql
       volumes:
-        - name: "my-vol"
-          hostPath:
-            path: "/mnt/data/web"            
+      - name: wordpress-1
+        persistentVolumeClaim:
+          claimName:  wordpress-1
