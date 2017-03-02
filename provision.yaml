@@ -2,14 +2,5 @@
   hosts: localhost
   gather_facts: false
   connection: local
-  tasks:
-    - name: create project
-      command: oc new-project '{{ project_name }}'
-    - name: create persistent volume claims
-      command: oc create -f volumes.yml
-    - name: create etc pods and service
-      command: oc create -f etcd.yml
-    - name: create mysql pods and service and stateful set
-      command: oc create -f mysql.yml
-    - name: create wordpress pods, scaler and replicaset
-      command: oc create -f wordpress.yml
+  roles:
+    - wordpress_ha
